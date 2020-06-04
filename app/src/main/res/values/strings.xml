@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Housework App</string>
+    <string name="add_word">Добавить</string>
+    <string name="hint_word">Новое дело</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Нельзя сохранять пустое.</string>
+</resources>
