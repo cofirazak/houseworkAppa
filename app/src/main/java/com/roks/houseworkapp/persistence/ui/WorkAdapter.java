@@ -17,11 +17,13 @@ import java.util.List;
 public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder> {
 
     class WorkViewHolder extends RecyclerView.ViewHolder {
-        private final TextView wordItemView;
+        private final TextView workItemViewName;
+//        private final TextView workItemViewScore;
 
         private WorkViewHolder(View itemView) {
             super(itemView);
-            wordItemView = itemView.findViewById(R.id.textView);
+            workItemViewName = itemView.findViewById(R.id.work_name);
+//            workItemViewScore = itemView.findViewById(R.id.work_score);
         }
     }
 
@@ -41,10 +43,12 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
     public void onBindViewHolder(@NonNull WorkViewHolder holder, int position) {
         if (mWords != null) {
             WorkEntity current = mWords.get(position);
-            holder.wordItemView.setText(current.getName());
+            holder.workItemViewName.setText(current.getName());
+//            holder.workItemViewScore.setText(current.getScore());
         } else {
             // Covers the case of data not being ready yet.
-            holder.wordItemView.setText("Нет записи");
+            holder.workItemViewName.setText("Нет записи");
+//            holder.workItemViewScore.setText("-");
         }
     }
 
