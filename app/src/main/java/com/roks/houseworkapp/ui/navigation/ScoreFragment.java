@@ -16,6 +16,6 @@ public class ScoreFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.third_page, container, false);
+        return inflater.inflate(R.layout.second_page, container, false);
     }
 }
