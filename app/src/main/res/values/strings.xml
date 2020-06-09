@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">Housework App</string>
-    <string name="add_word">Добавить</string>
-    <string name="hint_word">Новое дело</string>
+    <string name="add_work">Добавить</string>
+    <string name="hint_work_name">Новое дело</string>
     <string name="button_save">Save</string>
-    <string name="empty_not_saved">Нельзя сохранять пустое.</string>
+    <string name="empty_not_saved">Нельзя сохранять пустое значение.</string>
     <string name="title_list">Список дел</string>
     <string name="title_score">Общий счет</string>
     <string name="title_history">История</string>
     <string name="work_name_title">Назавание</string>
     <string name="work_score_title">Баллы</string>
+    <string name="work_score_hint">Оценка в баллах</string>
 </resources>

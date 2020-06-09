@@ -1,30 +1,16 @@
 package com.roks.houseworkapp;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.roks.houseworkapp.persistence.db.entity.WorkEntity;
-import com.roks.houseworkapp.persistence.ui.WorkAdapter;
-import com.roks.houseworkapp.persistence.viewmodel.WorkViewModel;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-
-    public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
-    private WorkViewModel workViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,37 +26,5 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-////        setContentView(R.layout.first_page);
-////
-////        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-//        final WorkAdapter adapter = new WorkAdapter(this);
-////        recyclerView.setAdapter(adapter);
-////        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-////
-////        workViewModel = new ViewModelProvider(this).get(WorkViewModel.class);
-////
-////        // Update the cached copy of the words in the adapter.
-////        workViewModel.getAllWork().observe(this, adapter::setAllWork);
-////
-////        FloatingActionButton fab = findViewById(R.id.fab);
-////        fab.setOnClickListener(view -> {
-////            Intent intent = new Intent(MainActivity.this, NewWorkActivity.class);
-////            startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
-////        });
-////    }
-////
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-//            WorkEntity word = new WorkEntity(Objects.requireNonNull(data.getStringExtra(NewWorkActivity.EXTRA_REPLY)), 1);
-//            workViewModel.insert(word);
-//        } else {
-//            Toast.makeText(
-//                    getApplicationContext(),
-//                    R.string.empty_not_saved,
-//                    Toast.LENGTH_LONG).show();
-//        }
     }
 }

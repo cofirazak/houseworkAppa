@@ -13,24 +13,16 @@ import com.roks.houseworkapp.R;
 import com.roks.houseworkapp.persistence.db.entity.WorkEntity;
 
 import java.util.List;
+import java.util.Locale;
 
 public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder> {
 
-    class WorkViewHolder extends RecyclerView.ViewHolder {
-        private final TextView workItemViewName;
-//        private final TextView workItemViewScore;
-
-        private WorkViewHolder(View itemView) {
-            super(itemView);
-            workItemViewName = itemView.findViewById(R.id.work_name);
-//            workItemViewScore = itemView.findViewById(R.id.work_score);
-        }
-    }
-
     private final LayoutInflater mInflater;
-    private List<WorkEntity> mWords; // Cached copy of words
+    private List<WorkEntity> work; // Cached copy of work
 
-    public WorkAdapter(Context context) { mInflater = LayoutInflater.from(context); }
+    public WorkAdapter(Context context) {
+        mInflater = LayoutInflater.from(context);
+    }
 
     @Override
     @NonNull
@@ -41,28 +33,39 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull WorkViewHolder holder, int position) {
-        if (mWords != null) {
-            WorkEntity current = mWords.get(position);
+        if (work != null) {
+            WorkEntity current = work.get(position);
             holder.workItemViewName.setText(current.getName());
-//            holder.workItemViewScore.setText(current.getScore());
+            holder.workItemViewScore.setText(String.format(Locale.ENGLISH, "%d", current.getScore()));
         } else {
             // Covers the case of data not being ready yet.
             holder.workItemViewName.setText("Нет записи");
-//            holder.workItemViewScore.setText("-");
+            holder.workItemViewScore.setText("-");
         }
     }
 
-    public void setAllWork(List<WorkEntity> words){
-        mWords = words;
+    public void setAllWork(List<WorkEntity> work) {
+        this.work = work;
         notifyDataSetChanged();
     }
 
     // getItemCount() is called many times, and when it is first called,
-    // mWords has not been updated (means initially, it's null, and we can't return null).
+    // work has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
-        if (mWords != null)
-            return mWords.size();
+        if (work != null)
+            return work.size();
         else return 0;
+    }
+
+    class WorkViewHolder extends RecyclerView.ViewHolder {
+        private final TextView workItemViewName;
+        private final TextView workItemViewScore;
+
+        private WorkViewHolder(View itemView) {
+            super(itemView);
+            workItemViewName = itemView.findViewById(R.id.work_name);
+            workItemViewScore = itemView.findViewById(R.id.work_score);
+        }
     }
 }
