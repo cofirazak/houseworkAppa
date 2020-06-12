@@ -60,7 +60,9 @@ public class WorkFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_WORK_REQUEST_CODE && resultCode == RESULT_OK) {
-            WorkEntity work = new WorkEntity(Objects.requireNonNull(data.getStringExtra(NewWorkActivity.WORK_NAME)), Objects.requireNonNull(data.getIntExtra(NewWorkActivity.WORK_SCORE, 0)));
+            WorkEntity work = new WorkEntity(
+                    Objects.requireNonNull(data.getStringExtra(NewWorkActivity.WORK_NAME)),
+                    Objects.requireNonNull(data.getIntExtra(NewWorkActivity.WORK_SCORE, 0)));
             workViewModel.insert(work);
         } else {
             Toast.makeText(

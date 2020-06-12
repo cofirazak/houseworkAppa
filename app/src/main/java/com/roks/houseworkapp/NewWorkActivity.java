@@ -19,7 +19,7 @@ public class NewWorkActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_work);
+        setContentView(R.layout.activity_new_work);
 
         editWorkName = findViewById(R.id.edit_work);
         editWorkScore = findViewById(R.id.edit_score);
