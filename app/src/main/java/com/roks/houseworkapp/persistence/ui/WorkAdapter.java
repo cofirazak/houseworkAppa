@@ -2,7 +2,6 @@ package com.roks.houseworkapp.persistence.ui;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.roks.houseworkapp.NewWorkActivity;
 import com.roks.houseworkapp.R;
 import com.roks.houseworkapp.persistence.db.entity.HistoryEntity;
 import com.roks.houseworkapp.persistence.db.entity.WorkEntity;
 import com.roks.houseworkapp.persistence.viewmodel.HistoryViewModel;
 import com.roks.houseworkapp.ui.navigation.WorkFragment;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 
 public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder> {
 
@@ -30,7 +30,6 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
     private List<WorkEntity> work; // Cached copy of work
     private Context context;
     private WorkFragment fragment;
-    private List<HistoryEntity> history; // Cached copy of work
 
     public WorkAdapter(Context context, WorkFragment fragment) {
         this.context = context;
@@ -41,7 +40,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
     @Override
     @NonNull
     public WorkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+        View itemView = mInflater.inflate(R.layout.work_recyclerview_item, parent, false);
         Button button = itemView.findViewById(R.id.work_done_button);
         button.setOnClickListener(v -> {
             AlertDialog.Builder workDoneDialog = new AlertDialog.Builder(context);
@@ -49,21 +48,21 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
             workDoneDialog.setMessage("Вы хотите завершить дело?");
             workDoneDialog.setIcon(R.drawable.ic_action_complite);
             workDoneDialog.setPositiveButton("Да",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            HistoryViewModel historyViewModel = new ViewModelProvider(fragment).get(HistoryViewModel.class);
-                            HistoryEntity history = new HistoryEntity(
-                                    Objects.requireNonNull(data.getStringExtra(NewWorkActivity.WORK_NAME)),
-                                    Objects.requireNonNull(data.getIntExtra(NewWorkActivity.WORK_SCORE, 0)));
-                            workViewModel.insert(history);
+                    (dialog, which) -> {
+                        HistoryViewModel historyViewModel = new ViewModelProvider(fragment)
+                                .get(HistoryViewModel.class);
+                        Optional<WorkEntity> clickedItem = work.stream().filter(work -> work.getId()
+                                .equals(v.getTag())).findFirst();
 
-                        }
+                        HistoryEntity newHistoryEntity = new HistoryEntity(
+                                Objects.requireNonNull(clickedItem.orElse(null)).getName(),
+                                Objects.requireNonNull(clickedItem.orElse(null)).getScore(),
+                                new Date(System.currentTimeMillis()));
+
+                        historyViewModel.insert(newHistoryEntity);
                     });
-            workDoneDialog.setNegativeButton("Нет",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
+            workDoneDialog.setNegativeButton("Нет", (dialog, which) -> {
+            });
             workDoneDialog.show();
         });
         return new WorkViewHolder(itemView);
@@ -75,7 +74,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
             WorkEntity current = work.get(position);
             holder.workItemViewName.setText(current.getName());
             holder.workItemViewScore.setText(String.format(Locale.ENGLISH, "%d", current.getScore()));
-            // TODO Задавать id work'а для кнопки "сделано"
+            holder.workItemButtonId.setTag(current.getId());
         } else {
             // Covers the case of data not being ready yet.
             holder.workItemViewName.setText("Нет записи");
@@ -85,11 +84,6 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
 
     public void setAllWork(List<WorkEntity> work) {
         this.work = work;
-        notifyDataSetChanged();
-    }
-
-    private void setAllHistory(List<HistoryEntity> history) {
-        this.history = history;
         notifyDataSetChanged();
     }
 
@@ -105,11 +99,13 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
     class WorkViewHolder extends RecyclerView.ViewHolder {
         private final TextView workItemViewName;
         private final TextView workItemViewScore;
+        private final Button workItemButtonId;
 
         private WorkViewHolder(View itemView) {
             super(itemView);
             workItemViewName = itemView.findViewById(R.id.work_name);
             workItemViewScore = itemView.findViewById(R.id.work_score);
+            workItemButtonId = itemView.findViewById(R.id.work_done_button);
         }
     }
 }

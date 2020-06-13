@@ -21,5 +21,5 @@
             android:id="@+id/navigation_history"
             android:name="com.roks.houseworkapp.ui.navigation.HistoryFragment"
             android:label="@string/title_history"
-            tools:layout="@layout/third_page" />
+            tools:layout="@layout/history_page" />
 </navigation>

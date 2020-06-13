@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 public class WorkEntity {
 
     @PrimaryKey(autoGenerate = true)
-    private Long id;
+    private Integer id;
 
     @NonNull
     private String name;
@@ -31,11 +31,11 @@ public class WorkEntity {
         return score;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 }
