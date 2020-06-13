@@ -8,6 +8,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.roks.houseworkapp.persistence.db.dao.HistoryDao;
 import com.roks.houseworkapp.persistence.db.dao.WorkDao;
 import com.roks.houseworkapp.persistence.db.entity.WorkEntity;
 
@@ -32,7 +33,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 // Populate the database in the background.
                 // If you want to start with more work, just add it.
                 WorkDao dao = INSTANCE.workDao();
-                dao.deleteAll();
+                dao.deleteAllWork();
 
                 WorkEntity work = new WorkEntity("Протелеть плиту", 1);
                 dao.insert(work);
@@ -57,4 +58,6 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public abstract WorkDao workDao();
+
+    public abstract HistoryDao historyDao();
 }

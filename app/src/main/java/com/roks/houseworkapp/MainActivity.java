@@ -31,36 +31,4 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
     }
-
-    public void workDoneClickEvent(View view) {
-        AlertDialog.Builder workDoneDialog = new AlertDialog.Builder(this);
-        workDoneDialog.setTitle("Завершение дела.");
-// Setting Dialog Message
-        workDoneDialog.setMessage("Вы хотите завершить дело?");
-// Setting Icon to Dialog
-        workDoneDialog.setIcon(R.drawable.ic_action_complite);
-// Setting Positive "Yes" Btn
-        workDoneDialog.setPositiveButton("Да",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Write your code here to execute after dialog
-                        Toast.makeText(view.getContext(),
-                                "You clicked on YES", Toast.LENGTH_SHORT)
-                                .show();
-                    }
-                });
-// Setting Negative "NO" Btn
-        workDoneDialog.setNegativeButton("Нет",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Write your code here to execute after dialog
-                        Toast.makeText(view.getContext(),
-                                "You clicked on NO", Toast.LENGTH_SHORT)
-                                .show();
-                        dialog.cancel();
-                    }
-                });
-// Showing Alert Dialog
-        workDoneDialog.show();
-    }
 }

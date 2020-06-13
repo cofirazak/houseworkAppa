@@ -1,5 +1,6 @@
 package com.roks.houseworkapp.ui.navigation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,11 +36,11 @@ public class WorkFragment extends Fragment {
         View view = inflater.inflate(R.layout.work_page, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.workPageRecyclerView);
-        FragmentActivity activity = getActivity();
+        Context context = getContext();
 
-        final WorkAdapter adapter = new WorkAdapter(activity);
+        final WorkAdapter adapter = new WorkAdapter(context, this);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager((activity)));
+        recyclerView.setLayoutManager(new LinearLayoutManager((context)));
 
         workViewModel = new ViewModelProvider(this).get(WorkViewModel.class);
 
@@ -49,7 +49,7 @@ public class WorkFragment extends Fragment {
 
         FloatingActionButton fab = view.findViewById(R.id.workPageFab);
         fab.setOnClickListener(v -> {
-            Intent intent = new Intent(activity, NewWorkActivity.class);
+            Intent intent = new Intent(context, NewWorkActivity.class);
             startActivityForResult(intent, NEW_WORK_REQUEST_CODE);
         });
 
@@ -66,7 +66,7 @@ public class WorkFragment extends Fragment {
             workViewModel.insert(work);
         } else {
             Toast.makeText(
-                    getActivity(),
+                    getContext(),
                     R.string.empty_not_saved,
                     Toast.LENGTH_LONG).show();
         }

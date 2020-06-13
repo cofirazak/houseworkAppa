@@ -41,12 +41,11 @@
                     android:textSize="18sp" />
 
             <Button
+                    android:id="@+id/work_done_button"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.6"
-                    android:foreground="@drawable/ic_action_complite"
-
-                    android:onClick="workDoneClickEvent" />
+                    android:foreground="@drawable/ic_action_complite" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

@@ -24,7 +24,7 @@ public interface WorkDao {
     void delete(WorkEntity workEntity);
 
     @Query("DELETE FROM WorkEntity")
-    void deleteAll();
+    void deleteAllWork();
 
     @Query("SELECT * from WorkEntity ORDER BY score ASC")
     LiveData<List<WorkEntity>> getWorkByScoreAsc();
