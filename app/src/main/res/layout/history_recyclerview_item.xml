@@ -34,7 +34,7 @@
 
             <TextView
                     android:id="@+id/history_score"
-                    android:layout_width="457dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.7"
                     android:gravity="center"
@@ -42,7 +42,7 @@
 
             <TextView
                     android:id="@+id/history_date"
-                    android:layout_width="457dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.7"
                     android:gravity="center"

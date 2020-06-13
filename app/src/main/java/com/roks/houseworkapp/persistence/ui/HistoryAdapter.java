@@ -42,7 +42,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             HistoryEntity current = history.get(position);
             holder.historyItemViewName.setText(current.getName());
             holder.historyItemViewScore.setText(String.format(Locale.ENGLISH, "%d", current.getScore()));
-            holder.historyItemDate.setTag(current.getDate());
+            holder.historyItemDate.setText(current.getDate().toString());
         } else {
             // Covers the case of data not being ready yet.
             holder.historyItemViewName.setText("Нет записи");
