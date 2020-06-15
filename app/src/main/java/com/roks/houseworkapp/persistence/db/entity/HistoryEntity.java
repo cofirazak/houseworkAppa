@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 @Entity
 public class HistoryEntity {
@@ -40,6 +42,12 @@ public class HistoryEntity {
     @NonNull
     public Date getDate() {
         return date;
+    }
+
+    @NonNull
+    public String getFormattedDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm", Locale.getDefault());
+        return sdf.format(date);
     }
 
     public Long getId() {

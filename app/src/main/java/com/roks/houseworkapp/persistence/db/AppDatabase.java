@@ -45,13 +45,16 @@ public abstract class AppDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
                 // If you want to start with more work, just add it.
-                WorkDao dao = INSTANCE.workDao();
-                dao.deleteAllWork();
+                WorkDao workDaodao = INSTANCE.workDao();
+                workDaodao.deleteAllWork();
+
+                HistoryDao historyDao = INSTANCE.historyDao();
+                historyDao.deleteAllHistory();
 
                 WorkEntity work = new WorkEntity("Протелеть плиту", 1);
-                dao.insert(work);
+                workDaodao.insert(work);
                 work = new WorkEntity("Вынести мусор", 2);
-                dao.insert(work);
+                workDaodao.insert(work);
             });
         }
     };

@@ -15,7 +15,7 @@
             android:id="@+id/navigation_score"
             android:name="com.roks.houseworkapp.ui.navigation.ScoreFragment"
             android:label="@string/title_score"
-            tools:layout="@layout/second_page" />
+            tools:layout="@layout/score_page" />
 
     <fragment
             android:id="@+id/navigation_history"

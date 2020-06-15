@@ -8,6 +8,7 @@ import com.roks.houseworkapp.persistence.db.AppDatabase;
 import com.roks.houseworkapp.persistence.db.dao.HistoryDao;
 import com.roks.houseworkapp.persistence.db.dao.WorkDao;
 import com.roks.houseworkapp.persistence.db.entity.HistoryEntity;
+import com.roks.houseworkapp.persistence.db.entity.ScoreEntity;
 import com.roks.houseworkapp.persistence.db.entity.WorkEntity;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class DataRepository {
     private HistoryDao historyDao;
     private LiveData<List<WorkEntity>> allWork;
     private LiveData<List<HistoryEntity>> allHistory;
+    private LiveData<List<ScoreEntity>> historyStat;
 
     // Note that in order to unit test the DataRepository, you have to remove the Application
     // dependency. This adds complexity and much more code, and this sample is not about testing.
@@ -29,6 +31,7 @@ public class DataRepository {
         historyDao = db.historyDao();
         allWork = workDao.getWorkByScoreAsc();
         allHistory = historyDao.getHistoryByDateDesc();
+        historyStat = historyDao.getHistoryStat();
     }
 
     // Room executes all queries on a separate thread.
@@ -39,6 +42,10 @@ public class DataRepository {
 
     public LiveData<List<HistoryEntity>> getAllHistory() {
         return allHistory;
+    }
+
+    public LiveData<List<ScoreEntity>> getHistoryStat() {
+        return historyStat;
     }
 
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures

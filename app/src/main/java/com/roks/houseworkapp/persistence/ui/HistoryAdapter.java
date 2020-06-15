@@ -20,12 +20,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
     private final LayoutInflater mInflater;
     private List<HistoryEntity> history; // Cached copy of history
-    private Context context;
-    private HistoryFragment fragment;
 
-    public HistoryAdapter(Context context, HistoryFragment fragment) {
-        this.context = context;
-        this.fragment = fragment;
+    public HistoryAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
     }
 
@@ -42,7 +38,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             HistoryEntity current = history.get(position);
             holder.historyItemViewName.setText(current.getName());
             holder.historyItemViewScore.setText(String.format(Locale.ENGLISH, "%d", current.getScore()));
-            holder.historyItemDate.setText(current.getDate().toString());
+            holder.historyItemDate.setText(current.getFormattedDate());
         } else {
             // Covers the case of data not being ready yet.
             holder.historyItemViewName.setText("Нет записи");

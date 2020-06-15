@@ -10,4 +10,5 @@
     <string name="work_name_title">Назавание</string>
     <string name="work_score_title">Баллы</string>
     <string name="work_score_hint">Оценка в баллах</string>
+    <string name="work_done_button">Сделано</string>
 </resources>

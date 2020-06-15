@@ -19,8 +19,6 @@ import com.roks.houseworkapp.persistence.viewmodel.HistoryViewModel;
 
 public class HistoryFragment extends Fragment {
 
-    private HistoryViewModel historyViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.history_page, container, false);
@@ -28,11 +26,11 @@ public class HistoryFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.historyPageRecyclerView);
         Context context = getContext();
 
-        final HistoryAdapter adapter = new HistoryAdapter(context, this);
+        final HistoryAdapter adapter = new HistoryAdapter(context);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((context)));
 
-        historyViewModel = new ViewModelProvider(this).get(HistoryViewModel.class);
+        HistoryViewModel historyViewModel = new ViewModelProvider(this).get(HistoryViewModel.class);
 
         // Update the cached copy of the history in the adapter.
         historyViewModel.getAllHistory().observe(getViewLifecycleOwner(), adapter::setAllHistory);
