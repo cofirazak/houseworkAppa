@@ -36,10 +36,13 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
     public void onBindViewHolder(@NonNull ScoreViewHolder holder, int position) {
         if (historyStat != null) {
             ScoreEntity current = historyStat.get(position);
+            String weekScore = String.format(Locale.ENGLISH, "%d", current.getWeekScore());
+            String monthScore = String.format(Locale.ENGLISH, "%d", current.getMonthScore());
+            String totalScore = String.format(Locale.ENGLISH, "%d", current.getTotalScore());
             holder.scoreItemViewUserName.setText(current.getUserName());
-            holder.scoreItemViewWeekScore.setText(String.format(Locale.ENGLISH, "%d", current.getWeekScore()));
-            holder.scoreItemViewMonthScore.setText(String.format(Locale.ENGLISH, "%d", current.getMonthScore()));
-            holder.scoreItemViewTotalScore.setText(String.format(Locale.ENGLISH, "%d", current.getTotalScore()));
+            holder.scoreItemViewWeekScore.setText(weekScore.equals("null") ? "-" : weekScore);
+            holder.scoreItemViewMonthScore.setText(monthScore.equals("null") ? "-" : weekScore);
+            holder.scoreItemViewTotalScore.setText(totalScore.equals("null") ? "-" : weekScore);
         } else {
             // Covers the case of data not being ready yet.
             holder.scoreItemViewUserName.setText("Нет записи");

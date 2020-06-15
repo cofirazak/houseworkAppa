@@ -23,13 +23,13 @@ import java.util.concurrent.Executors;
 @TypeConverters({Converter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
-//    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
-//        @Override
-//        public void migrate(SupportSQLiteDatabase database) {
-//            database.execSQL("CREATE TABLE HistoryEntity "
-//                    +"(id INT8, name VARCHAR(255), score , date)");
-//        }
-//    };
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("INSERT INTO `WorkEntity` (`id`, `name`, `score`) VALUES (10, 'Протелеть плиту', 1)");
+            database.execSQL("INSERT INTO `WorkEntity` (`id`, `name`, `score`) VALUES (11, 'Вынести мусор', 1)");
+        }
+    };
 
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor =
@@ -39,23 +39,6 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
-
-            // If you want to keep data through app restarts,
-            // comment out the following block
-            databaseWriteExecutor.execute(() -> {
-                // Populate the database in the background.
-                // If you want to start with more work, just add it.
-                WorkDao workDaodao = INSTANCE.workDao();
-                workDaodao.deleteAllWork();
-
-                HistoryDao historyDao = INSTANCE.historyDao();
-                historyDao.deleteAllHistory();
-
-                WorkEntity work = new WorkEntity("Протелеть плиту", 1);
-                workDaodao.insert(work);
-                work = new WorkEntity("Вынести мусор", 2);
-                workDaodao.insert(work);
-            });
         }
     };
 
@@ -66,8 +49,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, "houseworkapp")
                             .addCallback(roomDatabaseCallback)
-//                            .addMigrations(MIGRATION_1_2)
-                            .fallbackToDestructiveMigration()
+                            .addMigrations(MIGRATION_1_2)
                             .build();
                 }
             }
