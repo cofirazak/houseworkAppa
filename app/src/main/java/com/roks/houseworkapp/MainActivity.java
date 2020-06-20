@@ -1,10 +1,6 @@
 package com.roks.houseworkapp;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -28,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_work, R.id.navigation_score, R.id.navigation_history)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
     }
 }
