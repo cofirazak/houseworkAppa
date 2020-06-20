@@ -3,8 +3,6 @@ package com.roks.houseworkapp.persistence.db.entity;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 
-import java.util.Date;
-
 @Entity
 public class ScoreEntity {
 

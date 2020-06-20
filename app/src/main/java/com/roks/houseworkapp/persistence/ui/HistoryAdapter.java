@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.roks.houseworkapp.R;
 import com.roks.houseworkapp.persistence.db.entity.HistoryEntity;
-import com.roks.houseworkapp.ui.navigation.HistoryFragment;
 
 import java.util.List;
 import java.util.Locale;
