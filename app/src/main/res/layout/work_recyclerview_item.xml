@@ -11,7 +11,8 @@
     android:layout_marginRight="12dp"
     app:cardCornerRadius="10dp"
     app:strokeColor="#666666"
-    app:strokeWidth="0.5dp">
+    app:strokeWidth="0.5dp"
+    android:clipToPadding="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,10 +44,11 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="6dp"
             android:background="@color/colorPrimary"
-            android:strokeWidth="9"
-            android:strokeColor="#91BDB0"
+            android:elevation="10dp"
             android:text="@string/work_done_button"
             android:textColor="@color/buttonLabel"
-            android:textAppearance="@style/doneButtonText"/>
+            android:textAppearance="@style/doneButtonText"
+            android:strokeWidth="10"
+            android:strokeColor="#91BDB0"/>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

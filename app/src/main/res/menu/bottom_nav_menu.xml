@@ -3,17 +3,19 @@
 
     <item
         android:id="@+id/navigation_work"
-        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:icon="@drawable/ic_baseline_format_list_bulleted_30"
         android:title="@string/title_list" />
 
     <item
         android:id="@+id/navigation_score"
-        android:icon="@android:drawable/star_off"
+        android:icon="@drawable/ic_baseline_star_30"
         android:title="@string/title_score" />
 
     <item
         android:id="@+id/navigation_history"
-        android:icon="@android:drawable/ic_menu_info_details"
+        android:icon="@drawable/ic_baseline_history_30"
         android:title="@string/title_history" />
 
 </menu>
+
+

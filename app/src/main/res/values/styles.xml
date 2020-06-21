@@ -8,15 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- The default font for RecyclerView items is too small.
-    The margin is a simple delimiter between the work. -->
-    <style name="work_title">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:paddingLeft">8dp</item>
-        <item name="android:background">@android:color/holo_orange_light</item>
-        <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
-    </style>
-
     <style name="doneButtonText">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#333333</item>

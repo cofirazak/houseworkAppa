@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/mobile_navigation"
-        app:startDestination="@+id/navigation_work">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_work">
 
     <fragment
-            android:id="@+id/navigation_work"
-            android:name="com.roks.houseworkapp.ui.navigation.WorkFragment"
-            tools:layout="@layout/work_page" />
+        android:id="@+id/navigation_work"
+        android:name="com.roks.houseworkapp.ui.navigation.WorkFragment"
+        android:label="@string/title_list"
+        tools:layout="@layout/work_page" />
 
     <fragment
-            android:id="@+id/navigation_score"
-            android:name="com.roks.houseworkapp.ui.navigation.ScoreFragment"
-            android:label="@string/title_score"
-            tools:layout="@layout/score_page" />
+        android:id="@+id/navigation_score"
+        android:name="com.roks.houseworkapp.ui.navigation.ScoreFragment"
+        android:label="@string/title_score"
+        tools:layout="@layout/score_page" />
 
     <fragment
-            android:id="@+id/navigation_history"
-            android:name="com.roks.houseworkapp.ui.navigation.HistoryFragment"
-            android:label="@string/title_history"
-            tools:layout="@layout/history_page" />
+        android:id="@+id/navigation_history"
+        android:name="com.roks.houseworkapp.ui.navigation.HistoryFragment"
+        android:label="@string/title_history"
+        tools:layout="@layout/history_page" />
 </navigation>
