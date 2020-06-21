@@ -5,6 +5,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="58dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/title_list"
+        android:textSize="28sp"
+        android:textColor="#333333"
+        android:textAppearance="@style/doneButtonText"
+        android:gravity="center"
+        android:layout_marginTop="12dp"
+        android:textStyle="bold|italic"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/workPageRecyclerView"
