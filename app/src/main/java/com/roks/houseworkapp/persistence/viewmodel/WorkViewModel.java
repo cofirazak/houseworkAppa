@@ -29,4 +29,8 @@ public class WorkViewModel extends AndroidViewModel {
     public void insert(WorkEntity work) {
         dataRepository.insert(work);
     }
+
+    public void delete(WorkEntity work) {
+        dataRepository.delete(work);
+    }
 }

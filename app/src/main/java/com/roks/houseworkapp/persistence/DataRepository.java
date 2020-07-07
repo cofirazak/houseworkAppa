@@ -1,6 +1,7 @@
 package com.roks.houseworkapp.persistence;
 
 import android.app.Application;
+import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
@@ -56,5 +57,22 @@ public class DataRepository {
 
     public void insert(HistoryEntity historyEntity) {
         AppDatabase.databaseWriteExecutor.execute(() -> historyDao.insert(historyEntity));
+    }
+
+    public void delete(WorkEntity workEntity) {
+        new DeleteWorkAsyncTask(workDao).execute(workEntity);
+    }
+    private static class DeleteWorkAsyncTask extends AsyncTask<WorkEntity, Void, Void> {
+
+        private WorkDao workDao;
+        private DeleteWorkAsyncTask(WorkDao workDao) {
+            this.workDao = workDao;
+        }
+        @Override
+        protected Void doInBackground(WorkEntity... work) {
+            workDao.delete(work[0]);
+            return null;
+        }
+
     }
 }

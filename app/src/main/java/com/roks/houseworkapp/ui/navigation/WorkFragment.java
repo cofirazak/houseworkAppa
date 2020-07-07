@@ -1,5 +1,6 @@
 package com.roks.houseworkapp.ui.navigation;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,6 +55,37 @@ public class WorkFragment extends Fragment {
             startActivityForResult(intent, NEW_WORK_REQUEST_CODE);
         });
 
+        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(
+                0, ItemTouchHelper.LEFT) {
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int swipeDirection) {
+                AlertDialog.Builder workDoneDialog = new AlertDialog.Builder(context);
+                workDoneDialog.setTitle("Удаление дела.");
+                workDoneDialog.setMessage("Вы хотите удалить дело?");
+                workDoneDialog.setIcon(R.drawable.ic_action_delete);
+                workDoneDialog.setPositiveButton("Да",
+                        (dialog, which) -> {
+                            //Remove swiped item from list and notify the RecyclerView
+                            int position = viewHolder.getAdapterPosition();
+                            workViewModel.delete(adapter.getWorkByIndex(position));
+                            adapter.notifyDataSetChanged();
+                        });
+                workDoneDialog.setNegativeButton("Нет", (dialog, which) -> adapter.notifyDataSetChanged());
+                workDoneDialog.show();
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
         return view;
     }
 
@@ -62,7 +95,7 @@ public class WorkFragment extends Fragment {
         if (requestCode == NEW_WORK_REQUEST_CODE && resultCode == RESULT_OK) {
             WorkEntity work = new WorkEntity(
                     Objects.requireNonNull(data.getStringExtra(NewWorkActivity.WORK_NAME)),
-                    Objects.requireNonNull(data.getIntExtra(NewWorkActivity.WORK_SCORE, 0)));
+                    data.getIntExtra(NewWorkActivity.WORK_SCORE, 0));
             workViewModel.insert(work);
         } else {
             Toast.makeText(

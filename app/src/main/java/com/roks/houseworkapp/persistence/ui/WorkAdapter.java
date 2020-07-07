@@ -37,6 +37,15 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
         mInflater = LayoutInflater.from(context);
     }
 
+    public WorkEntity getWorkByIndex(int index) {
+        return work.get(index);
+    }
+
+    public void setAllWork(List<WorkEntity> work) {
+        this.work = work;
+        notifyDataSetChanged();
+    }
+
     @Override
     @NonNull
     public WorkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -82,11 +91,6 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
         }
     }
 
-    public void setAllWork(List<WorkEntity> work) {
-        this.work = work;
-        notifyDataSetChanged();
-    }
-
     // getItemCount() is called many times, and when it is first called,
     // work has not been updated (means initially, it's null, and we can't return null).
     @Override
@@ -96,7 +100,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
         else return 0;
     }
 
-    class WorkViewHolder extends RecyclerView.ViewHolder {
+    static class WorkViewHolder extends RecyclerView.ViewHolder {
         private final TextView workItemViewName;
         private final TextView workItemViewScore;
         private final Button workItemButtonId;
