@@ -40,8 +40,8 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
             String totalScore = String.format(Locale.ENGLISH, "%d", current.getTotalScore());
             holder.scoreItemViewUserName.setText(current.getUserName());
             holder.scoreItemViewWeekScore.setText(weekScore.equals("null") ? "-" : weekScore);
-            holder.scoreItemViewMonthScore.setText(monthScore.equals("null") ? "-" : weekScore);
-            holder.scoreItemViewTotalScore.setText(totalScore.equals("null") ? "-" : weekScore);
+            holder.scoreItemViewMonthScore.setText(monthScore.equals("null") ? "-" : monthScore);
+            holder.scoreItemViewTotalScore.setText(totalScore.equals("null") ? "-" : totalScore);
         } else {
             // Covers the case of data not being ready yet.
             holder.scoreItemViewUserName.setText("Нет записи");
