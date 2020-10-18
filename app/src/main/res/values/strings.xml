@@ -11,4 +11,7 @@
     <string name="work_score_title">Баллы</string>
     <string name="work_score_hint">Оценка в баллах</string>
     <string name="work_done_button">Сделано</string>
+    <string name="this_week">Текущая неделя</string>
+    <string name="this_month">Текущий месяц</string>
+    <string name="total_score">Всего</string>
 </resources>

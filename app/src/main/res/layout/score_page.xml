@@ -7,27 +7,66 @@
     tools:context=".ui.navigation.ScoreFragment">
 
     <TextView
+        android:id="@+id/titleScore"
         android:layout_width="220dp"
         android:layout_height="56dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/scorePageRecyclerView"
-        android:layout_marginBottom="20dp"
-        android:text="@string/title_score"
-        android:textSize="24sp"
-        android:textColor="#333333"
-        android:textAppearance="@style/doneButtonText"
         android:gravity="center"
+        android:text="@string/title_score"
+        android:textAppearance="@style/doneButtonText"
+        android:textColor="#333333"
+        android:textSize="24sp"
         android:textStyle="bold|italic"
-        />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/titleScore"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        >
+
+        <TextView
+            android:id="@+id/weekScore"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/this_week"
+            android:gravity="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/monthScore"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/this_month"
+            android:gravity="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/totalScore"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/total_score"
+            android:gravity="center"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/scorePageRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/score_recyclerview_item"
+        android:layout_marginTop="140dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="80dp"/>
+        tools:listitem="@layout/score_recyclerview_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>
